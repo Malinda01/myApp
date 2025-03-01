@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service //should be placed exactly here
 public class StudentService {
@@ -13,8 +14,20 @@ public class StudentService {
     @Autowired //Dependency Injection
     private StudentRepository studentRepository; //Interface type reference variable
 
-    //method
+    //method - find all the students
     public List<Student> getStudent(){
         return studentRepository.findAll();
     }
+
+    //method - find the student from the ID
+    public Student getStudentByID(int id){
+        Optional<Student> stu =
+                studentRepository.findById(id);
+        if(stu.isPresent()){
+            return stu.get();
+        }
+
+        return null;
+    }
+
 }
