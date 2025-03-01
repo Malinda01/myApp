@@ -30,4 +30,21 @@ public class StudentService {
         return null;
     }
 
+    //method - create a student record
+    public Student createStudent (Student student){
+        return studentRepository.save(student);
+    }
+
+    //method - delete students by ID
+    public Student deleteStudentByID (int id){
+        Optional<Student> stu = studentRepository.deleteById(id);
+        if(stu.isPresent()){
+            return stu.get();
+        }
+
+        return null;
+    }
+
+    //method - update student
+
 }

@@ -3,9 +3,7 @@ package com.app.controller;
 import com.app.entity.Student;
 import com.app.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,17 @@ public class StudentController {
     public Student getStudentById(@PathVariable int id) {
 
         return studentService.getStudentByID(id);
+    }
+
+    //Create students
+    @PostMapping(path = "/students")
+    public Student createStudent(@RequestBody Student student){
+        return studentService.createStudent(student);
+    }
+
+    //Delete student by ID
+    @DeleteMapping(path = "/students/{id}")
+    public Student deleteStudent(@PathVariable int id){
+        return studentService.deleteStudentByID(id);
     }
 }
